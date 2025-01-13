@@ -1,5 +1,5 @@
 export const signup = async (req, res) => {
-    res.send("signup route");
+    console.log("signup route");
 };
 export const login = async (req, res) => {
     res.send("login route");
