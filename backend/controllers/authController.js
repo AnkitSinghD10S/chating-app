@@ -1,9 +1,22 @@
-export const signup = async (req, res) => {
-    console.log("signup route");
+ const login = (req,res)=>{
+    res.send("login phjxdfhjsage");
 };
-export const login = async (req, res) => {
-    res.send("login route");
-};
-export const logout = async (req, res) => {
-    res.send("logout route");
-};
+
+ const signup =async (req,res)=>{
+    try {
+        const {fullname ,username,password , confirmpassword }=req.body
+    } catch (error) {
+        
+    }
+}
+
+ const logout = (req,res)=>{
+    res.send ("logout page");
+}
+
+export {login,signup,logout};
+
+
+
+
+
