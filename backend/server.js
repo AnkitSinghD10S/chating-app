@@ -11,12 +11,6 @@ app.use(express.json())
 
 app.use("/api/auth", authRoutes);
 
-// app.get("/", (req, res) => {
-//     res.send("radha radha");
-// });
-
-
-
 app.listen(PORT, () => {
     dbConnect();
     console.log(`server started on http://localhost:${PORT}`);
