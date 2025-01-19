@@ -1,5 +1,6 @@
 import User from "../models/user.model.js";
 import bcrypt from "bcryptjs";
+import genrateToken from "../utils/genrateToken.js";
 const login = (req, res) => {
     res.send("login phjxdfhjsage");
 };
@@ -35,6 +36,9 @@ const signup = async (req, res) => {
         });
 
         if (newUser) {
+            // genrate JWT token
+            genrateToken(newUser._id, res);
+
             await newUser.save();
 
             res.status(201).json({
@@ -52,8 +56,13 @@ const signup = async (req, res) => {
     }
 };
 
-const logout = (req, res) => {
-    res.send("logout page");
+const logout = async(req, res) => {
+    try {
+        
+    } catch (error) {
+        
+    }
+
 };
 
 export { login, signup, logout };
