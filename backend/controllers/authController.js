@@ -1,8 +1,32 @@
 import User from "../models/user.model.js";
 import bcrypt from "bcryptjs";
 import genrateToken from "../utils/genrateToken.js";
-const login = (req, res) => {
-    res.send("login phjxdfhjsage");
+const login = async (req, res) => {
+    try {
+
+        const {username,password }= req.body;
+
+        const user = await User.findOne({username});
+
+        const isPasswordCorrect = await bcrypt.compare(password,user?.password || "");
+
+        if(!user || !isPasswordCorrect){
+            return res.status(400).json({error:"invalid credentials"})
+        }
+
+        genrateToken(user._id ,res)
+
+        res.status(200).json({
+            _id:user._id,
+            fullname:user.fullName,
+            username:user.username,
+            profilePic:user.profilePic
+        })
+        
+    } catch (error) {
+        console.log("error in login controller", error);
+        res.status(500).json({ error: "internal server error" });
+    }
 };
 
 const signup = async (req, res) => {
@@ -56,13 +80,14 @@ const signup = async (req, res) => {
     }
 };
 
-const logout = async(req, res) => {
+const logout = (req, res) => {
     try {
-        
+        res.cookie('jwt',"",{maxAge:0});
+        res.status(200).json({message:"logout successfully"})
     } catch (error) {
-        
+        console.log("error in logout controller", error);
+        res.status(500).json({ error: "internal server error" });
     }
-
 };
 
 export { login, signup, logout };
