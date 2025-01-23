@@ -7,9 +7,10 @@ const app = express();
 
 dotenv.config();
 
-app.use(express.json())
+app.use(express.json()) //to parse the incoming  requets with Json payloads (from req.body)
 
 app.use("/api/auth", authRoutes);
+
 
 app.listen(PORT, () => {
     dbConnect();
