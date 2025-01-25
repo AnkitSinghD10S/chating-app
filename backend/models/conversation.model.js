@@ -1,6 +1,4 @@
-import mongoose, { Mongoose } from "mongoose";
-import Message from "./message.model";
-
+import mongoose from "mongoose";
 const conversationSchema = new mongoose.Schema(
     {
         participants: [
@@ -9,7 +7,7 @@ const conversationSchema = new mongoose.Schema(
                 ref: "User",
             },
         ],
-        message: [
+        messages: [
             {
                 type: mongoose.Schema.Types.ObjectId,
                 ref: "Message",
