@@ -1,7 +1,7 @@
 import "../../index.css";
 const Login = () => {
     return (
-        <div className="felx flex-col items-center justify-center min-w-96 mx-auto">
+        <div className="flex flex-col items-center justify-center min-w-96 mx-auto">
             <div className="h-full p-6 w-full rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40 border-1 border-green-800">
                 <h1 className="text-3xl font-semibold text-center text-green">
                     Login
@@ -17,7 +17,7 @@ const Login = () => {
                         <input
                             type="text"
                             placeholder="Enter username"
-                            className="w-full input input-bordered h-10 placeholder:text-green-500"
+                            className="input input-bordered w-full max-w-xs placeholder:text-green-500"
                         />
                     </div>
                     <div>
@@ -29,7 +29,7 @@ const Login = () => {
                         <input
                             type="password"
                             placeholder="Enter password"
-                            className="w-full input input-bordered h-10 placeholder:text-green-500"
+                            className="input input-bordered w-full max-w-xs placeholder:text-green-500"
                         />
                     </div>
                     <a
