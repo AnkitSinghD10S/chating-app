@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "../../index.css";
 const Login = () => {
     return (
@@ -32,12 +33,12 @@ const Login = () => {
                             className="input input-bordered w-full max-w-xs placeholder:text-green-500"
                         />
                     </div>
-                    <a
+                    <Link
                         to="/signup"
                         className="text-sm  hover:underline hover:text-green-600 mt-2 inline-block"
                     >
                         {"Don't"} have an account?
-                    </a>
+                    </Link>
 
                     <div>
                         <button
