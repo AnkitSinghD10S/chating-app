@@ -1,6 +1,7 @@
 import { useState } from "react";
 import GenderBox from "./GenderBox";
 import { Link } from "react-router-dom";
+import UseSignUp from "../hooks/UseSignUp";
 const SignUp = () => {
     const [inputs, setInputs] = useState({
         fullName: "",
@@ -10,13 +11,15 @@ const SignUp = () => {
         gender: "",
     });
 
-    const handleCheckboxChange = (gender) => {
-		setInputs({ ...inputs, gender });
-	};
+    const { loading, signup } = UseSignUp();
 
-    const handleSubmit = (e) => {
+    const handleCheckboxChange = (gender) => {
+        setInputs({ ...inputs, gender });
+    };
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(inputs);
+        await signup(inputs);
     };
     return (
         <div className="flex flex-col items-center justify-center min-w-96 mx-auto">
@@ -37,12 +40,12 @@ const SignUp = () => {
                             placeholder="Enter fullname"
                             className="input input-bordered w-full max-w-xs placeholder:text-green-500"
                             value={inputs.fullName}
-                            onChange={(e) =>
+                            onChange={(e) => {
                                 setInputs({
                                     ...inputs,
                                     fullName: e.target.value,
-                                })
-                            }
+                                });
+                            }}
                         />
                     </div>
                     <div className="mt-1.5">
@@ -102,9 +105,9 @@ const SignUp = () => {
                             }
                         />
                     </div>
-
                     <GenderBox
-                        onCheckboxChange={handleCheckboxChange} selectedGender={inputs.gender}
+                        onCheckboxChange={handleCheckboxChange}
+                        selectedGender={inputs.gender}
                     />
 
                     <Link
