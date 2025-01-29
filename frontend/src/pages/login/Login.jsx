@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import "../../index.css";
 const Login = () => {
+    
     return (
         <div className="flex flex-col items-center justify-center min-w-96 mx-auto">
             <div className="h-full p-6 w-full rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40 border-1 border-green-800">

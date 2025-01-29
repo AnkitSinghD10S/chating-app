@@ -41,7 +41,7 @@ const signup = async (req, res) => {
         const user = await User.findOne({ username });
 
         if (user) {
-            res.status(400).json({ error: "use ralreay exist" });
+            res.status(400).json({ error: "user ralreay exist" });
         }
 
         // hash password

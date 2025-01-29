@@ -1,7 +1,7 @@
 import { useState } from "react";
 import GenderBox from "./GenderBox";
 import { Link } from "react-router-dom";
-import UseSignUp from "../hooks/UseSignUp";
+import UseSignUp from "../hooks/useSignUp";
 const SignUp = () => {
     const [inputs, setInputs] = useState({
         fullName: "",
@@ -118,9 +118,8 @@ const SignUp = () => {
                     </Link>
 
                     <div>
-                        <button className="btn btn-block btn-sm mt-2">
-                            {" "}
-                            Sign Up
+                        <button className="btn btn-block btn-sm mt-2" disabled={loading}>
+                            {loading? (<span className="loading loading-spinner"></span>) :"Sign Up"}
                         </button>
                     </div>
                 </form>

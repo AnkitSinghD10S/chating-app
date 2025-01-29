@@ -1,11 +1,11 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
-// import { useAuthContext } from "../../context/AuthContext";
+import { useAuthContext } from "../../context/AuthContext";
 
 const UseSignUp = () => {
     const [loading, setLoading] = useState();
 
-    // const {setAuthUser} = useAuthContext();
+    const {setAuthUser} = useAuthContext();
 
 
     const signup = async ({
@@ -44,7 +44,7 @@ const UseSignUp = () => {
 
           localStorage.setItem("chat-user",JSON.stringify(data))
 
-        //   setAuthUser(data)
+          setAuthUser(data)
 
           
         } catch (error) {
