@@ -1,7 +1,20 @@
 import { Link } from "react-router-dom";
 import "../../index.css";
+import { useState } from "react";
+import useLogIn from "../hooks/useLogIn";
 const Login = () => {
-    
+    const [inputs, setInputs] = useState({
+        username: "",
+        password: "",
+    });
+
+    const { loading, login } = useLogIn();
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        await login(inputs);
+    };
+
     return (
         <div className="flex flex-col items-center justify-center min-w-96 mx-auto">
             <div className="h-full p-6 w-full rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40 border-1 border-green-800">
@@ -20,6 +33,13 @@ const Login = () => {
                             type="text"
                             placeholder="Enter username"
                             className="input input-bordered w-full max-w-xs placeholder:text-green-500"
+                            value={inputs.username}
+                            onChange={(e) => {
+                                setInputs({
+                                    ...inputs,
+                                    username: e.target.value,
+                                });
+                            }}
                         />
                     </div>
                     <div>
@@ -32,6 +52,13 @@ const Login = () => {
                             type="password"
                             placeholder="Enter password"
                             className="input input-bordered w-full max-w-xs placeholder:text-green-500"
+                            value={inputs.password}
+                            onChange={(e) =>
+                                setInputs({
+                                    ...inputs,
+                                    password: e.target.value,
+                                })
+                            }
                         />
                     </div>
                     <Link
@@ -42,10 +69,9 @@ const Login = () => {
                     </Link>
 
                     <div>
-                        <button
-                            className="btn btn-block btn-sm mt-2"
-
-                        > Login</button>
+                        <button className="btn btn-block btn-sm mt-2" onClick={handleSubmit}>
+                            {loading?(<span className="loading loading-spinner"></span>):"Login"}
+                        </button>
                     </div>
                 </form>
             </div>
