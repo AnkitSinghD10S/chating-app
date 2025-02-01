@@ -1,14 +1,20 @@
-import useGetConversation from "../../pages/hooks/useGetConversation";
-import Conversation from "./Conversation"
+import useGetConversations from "../../pages/hooks/useGetConversations";
+import Conversation from "./Conversation";
 
 const Conversations = () => {
-  const {loading,conversations}=useGetConversation();
-  console.log("conversations ",conversations);
-  
-  return (
-    <div className=" py-2 flex flex-col overflow-auto">
-    </div>
-  )
-}
+	const { loading, conversations } = useGetConversations();
+	return (
+		<div className='py-2 flex flex-col overflow-auto'>
+			{conversations.map((conversation,idx) => (
+				<Conversation
+					key={conversation._id}
+					conversation={conversation}
+					lastIdx={idx === conversations.length - 1}
+				/>
+			))}
 
-export default Conversations
+			{loading ? <span className='loading loading-spinner mx-auto'></span> : null}
+		</div>
+	);
+};
+export default Conversations;

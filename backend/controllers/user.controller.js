@@ -6,7 +6,7 @@ export const getUsers= async(req,res)=>{
         const loggedInUserId = req.user._id;
         const fillterdUsers = await User.find({_id:{$ne:loggedInUserId}}).select("-password")
 
-        res.status(200).json({fillterdUsers});
+        res.status(200).json(fillterdUsers);
         
     } catch (error) {
         console.log("error in get user controller ",error);
