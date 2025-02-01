@@ -5,8 +5,6 @@ const Conversation = ({conversation,lastIndex}) => {
     const {selectedConversation , setSelectedConversation} = useConversation()
 
     const isSelected = selectedConversation?._id=== conversation._id;
-    console.log(selectedConversation);
-    
     return (
         <>
     <div className={`flex gap-2 items-center hover:bg-blue-800 rounded p-2 py-1 cursor-pointer  ${isSelected? 'bg-blue-900':''}`}
