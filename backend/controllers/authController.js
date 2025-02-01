@@ -56,7 +56,7 @@ const signup = async (req, res) => {
             username,
             password: hashedPassword,
             gender,
-            profilePic: gender == "male" ? boyProfilePic : girlProfilePic,
+            profilePic: gender === "male" ? boyProfilePic : girlProfilePic,
         });
 
         if (newUser) {

@@ -6,7 +6,6 @@ export const sendMessage = async (req, res) => {
         const { message } = req.body;
         const { id: receiverId } = req.params;
         const senderId = req.user._id;
-        console.log(senderId);
         let conversation = await Conversation.findOne({
             participants: { $all: [senderId, receiverId] },
         });
@@ -20,8 +19,6 @@ export const sendMessage = async (req, res) => {
             receiverId,
             message,
         });
-        console.log(newMessage);
-
         if (newMessage) {
             conversation.messages.push(newMessage._id);
         }
@@ -49,7 +46,7 @@ export const getMessage = async (req, res) => {
 
         const messages = conversation.messages
 
-        res.status(200).json({ messages })
+        res.status(200).json( messages )
     } catch (error) {
         console.log("Error in getting message controller ", error.message);
         res.status(500).json({ error: "Internal server error" });
