@@ -1,12 +1,11 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { useAuthContext } from "../../context/AuthContext";
+import { useAuthContext } from "../context/AuthContext";
 
 const UseSignUp = () => {
     const [loading, setLoading] = useState();
 
-    const {setAuthUser} = useAuthContext();
-
+    const { setAuthUser } = useAuthContext();
 
     const signup = async ({
         fullName,
@@ -27,35 +26,36 @@ const UseSignUp = () => {
         }
         setLoading(true);
         try {
+            console.log(password, confirmPassword);
 
-          console.log(password,confirmPassword);
-          
+            const res = await fetch("/api/auth/signup", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    fullName,
+                    username,
+                    password,
+                    confirmPassword,
+                    gender,
+                }),
+            });
 
-          const res = await fetch("/api/auth/signup",{
-            method:"POST",
-            headers:{"Content-Type":"application/json"},
-            body:JSON.stringify({fullName,username,password,confirmPassword,gender})
-          })
+            const data = await res.json();
+            if (data.error) {
+                throw new Error(data.error);
+            }
 
-          const data = await res.json();
-          if(data.error){
-            throw new Error (data.error)
-          }
+            localStorage.setItem("chat-user", JSON.stringify(data));
 
-          localStorage.setItem("chat-user",JSON.stringify(data))
-
-          setAuthUser(data)
-
-          
+            setAuthUser(data);
         } catch (error) {
             toast.error(error.message);
-        } finally{
-          setLoading(false);
+        } finally {
+            setLoading(false);
         }
-        };
+    };
 
-    return {loading ,signup}
-
+    return { loading, signup };
 };
 
 export default UseSignUp;
@@ -67,14 +67,14 @@ const handelInputError = ({
     confirmPassword,
     gender,
 }) => {
-  console.log({
-    fullName,
-    username,
-    password,
-    confirmPassword,
-    gender,
-});
-  
+    console.log({
+        fullName,
+        username,
+        password,
+        confirmPassword,
+        gender,
+    });
+
     if (!fullName || !username || !password || !confirmPassword || !gender) {
         toast.error("please fill in all the fields");
         return false;

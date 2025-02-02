@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "../../index.css";
 import { useState } from "react";
-import useLogIn from "../hooks/useLogIn";
+import useLogIn from "../../hooks/useLogIn";
 const Login = () => {
     const [inputs, setInputs] = useState({
         username: "",
@@ -69,8 +69,15 @@ const Login = () => {
                     </Link>
 
                     <div>
-                        <button className="btn btn-block btn-sm mt-2" onClick={handleSubmit}>
-                            {loading?(<span className="loading loading-spinner"></span>):"Login"}
+                        <button
+                            className="btn btn-block btn-sm mt-2"
+                            onClick={handleSubmit}
+                        >
+                            {loading ? (
+                                <span className="loading loading-spinner"></span>
+                            ) : (
+                                "Login"
+                            )}
                         </button>
                     </div>
                 </form>
